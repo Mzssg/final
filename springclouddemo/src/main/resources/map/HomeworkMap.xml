@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.springbootdemo.dao.HomeworkDAO">
+    <insert id="addstudent" parameterType="com.example.springbootdemo.model.addstudentmodel">
+        insert into addstudent (student,teacher) values(#{student},#{teacher})
+    </insert>
+    <insert id="addhomework" parameterType="com.example.springbootdemo.model.addhomeworkmodel">
+         insert into homework (homeworkname,homework,teachername) values(#{homeworkname},#{homework},#{teachername})
+    </insert>
+    <insert id="applyhomework" parameterType="com.example.springbootdemo.model.applymodel">
+         insert into applyhomework (homeworkname,answer,student) values(#{homeworkname},#{answer},#{student})
+    </insert>
+    <select id="teacherhomework" resultMap="com.example.springbootdemo.model.applymodel" >
+        select * from applyhomework where student=#{student}
+    </select>
+    <select id="studenthomework" resultMap="com.example.springbootdemo.model.applymodel" >
+        select * from homework where teachername=#{teachername}
+    </select>
+</mapper>
